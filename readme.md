@@ -24,20 +24,19 @@ Chaque tondeuse se déplace de façon séquentielle, ce qui signifie que la seco
  
 Lorsqu'une tondeuse achève une série d'instruction, elle communique sa position et son orientation. 
  
-OBJECTIF 
+### OBJECTIF 
 Concevoir et écrire un programme s'exécutant sur une JVM ≥ 1.7 ou un serveur node.js, et implémentant la spécification ci-dessus et passant le test ci-après 
  
-TEST 
-Le fichier suivant est fourni en entrée : 
-5 5 
-1 2 N 
-GAGAGAGAA 
-3 3 E 
+Le fichier suivant est fourni en entrée : <br />
+5 5 <br/>
+1 2 N <br />
+GAGAGAGAA <br />
+3 3 E <br />
 AADAADADDA 
  
-On attend le résultat suivant (position finale des tondeuses) : 
-1 3 N 
-5 1 E 
+On attend le résultat suivant (position finale des tondeuses) : <br />
+1 3 N <br />
+5 1 E <br />
  
 NB: Les données en entrée peuvent être injectée sous une autre forme qu'un fichier (par exemple un test automatisé). 
 
