@@ -8,6 +8,8 @@ package com.xebia.mower;
 import com.xebia.mower.domain.Mower;
 import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
 import java.text.MessageFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,6 +33,8 @@ public class MowerMotionStrategyImpl implements IMowerMotionStrategy {
                 case 'A':
                     mower.goStraight();
                     break;
+                    default:
+                         Logger.getLogger(MowerMotionStrategyImpl.class.getName()).log(Level.WARNING, "Unknown instruction: {0}", instruction);
             }
         }
 

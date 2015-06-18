@@ -12,13 +12,10 @@ import java.io.StringReader;
 import java.util.NoSuchElementException;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 /**
  *
  * @author Sébastien
  */
-@RunWith(MockitoJUnitRunner.class)
 public class XebiaConfigurationParserTest {
 
     /**
