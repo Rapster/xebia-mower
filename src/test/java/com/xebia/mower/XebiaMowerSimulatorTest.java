@@ -5,6 +5,9 @@
  */
 package com.xebia.mower;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.xebia.mower.guice.MotionStrategyModule;
 import java.io.Reader;
 import java.io.StringReader;
 import org.junit.Test;
@@ -29,7 +32,9 @@ public class XebiaMowerSimulatorTest {
         Reader reader = new StringReader(input);
         XebiaConfigurationParser parser = new XebiaConfigurationParser(reader);
         XebiaSimulatorConfiguration conf = parser.parse();
-        new XebiaMowerSimulator().run(conf);
+        Injector injector = Guice.createInjector(new MotionStrategyModule());
+        XebiaMowerSimulator simulator = injector.getInstance(XebiaMowerSimulator.class);
+        simulator.run(conf);
     }
 
 }
