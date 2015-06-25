@@ -8,7 +8,6 @@ package com.xebia.mower;
 import com.xebia.mower.domain.Field;
 import com.xebia.mower.domain.Mower;
 import com.xebia.mower.domain.Lawn;
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -36,13 +35,12 @@ public class XebiaMowerSimulator {
     }
 
     public void run(XebiaSimulatorConfiguration configuration) {
-        IMowerMotionStrategy motionStrategy = new MowerMotionStrategyImpl();
-
         Field field = new Field(configuration.getXTopRightCorner(), configuration.getYTopRightCorner());
-        for (XebiaMowerConfiguration mowerConf : configuration.getMowerConfigurations()) {
-            Lawn lawn = field.getLawn(mowerConf.getXStartPosition(), mowerConf.getYStartPosition());
-            Mower mower = new Mower(lawn, mowerConf.getOrientation());
-            motionStrategy.move(mowerConf, mower);
+        
+        for (XebiaMowerInstruction instruction : configuration.getMowerConfigurations()) {
+            Lawn lawn = field.getLawn(instruction.getXStartPosition(), instruction.getYStartPosition());
+            Mower mower = new Mower(lawn, instruction.getOrientation());
+            mower.move(instruction);
         }
     }
 }

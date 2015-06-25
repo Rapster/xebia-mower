@@ -6,7 +6,6 @@
 package com.xebia.mower;
 
 import com.xebia.mower.domain.Mower;
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
 
 /**
  *
@@ -14,5 +13,5 @@ import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
  */
 public interface IMowerMotionStrategy {
 
-    public void move(XebiaMowerConfiguration configuration, Mower mower);
+    public void move(Mower mower, XebiaMowerInstruction configuration);
 }

@@ -5,6 +5,10 @@
  */
 package com.xebia.mower.domain;
 
+import com.xebia.mower.IMowerMotionStrategy;
+import com.xebia.mower.MowerMotionStrategyImpl;
+import com.xebia.mower.XebiaMowerInstruction;
+
 /**
  *
  * @author Sébastien
@@ -15,9 +19,16 @@ public class Mower {
 
     private Orientation orientation;
 
-    public Mower(Lawn lawn, Orientation orientation) {
+    private IMowerMotionStrategy motionStrategy;
+
+    public Mower(Lawn lawn, Orientation orientation, IMowerMotionStrategy motionStrategy) {
         this.lawn = lawn;
         this.orientation = orientation;
+        this.motionStrategy = motionStrategy;
+    }
+
+    public Mower(Lawn lawn, Orientation orientation) {
+        this(lawn, orientation, new MowerMotionStrategyImpl());
     }
 
     public void goLeft() {
@@ -66,6 +77,10 @@ public class Mower {
 
     public void rotateRight() {
         orientation = orientation.major90degrees();
+    }
+
+    public void move(XebiaMowerInstruction instruction) {
+        motionStrategy.move(this, instruction);
     }
 
     public Lawn getLawn() {

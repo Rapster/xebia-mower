@@ -6,7 +6,6 @@
 package com.xebia.mower;
 
 import com.xebia.mower.domain.Mower;
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
 import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,12 +16,14 @@ import java.util.logging.Logger;
  */
 public class MowerMotionStrategyImpl implements IMowerMotionStrategy {
 
+    private static final Logger LOGGER = Logger.getLogger(MowerMotionStrategyImpl.class.getName());
+
     @Override
-    public void move(XebiaMowerConfiguration configuration, Mower mower) {
-        System.out.println(MessageFormat.format("Mower starts moving from ({0}, {1})  in direction of {2}.",
+    public void move(Mower mower, XebiaMowerInstruction instructions) {
+        LOGGER.info(MessageFormat.format("Mower starts moving from ({0}, {1})  in direction of {2}.",
                 mower.getLawn().getX(), mower.getLawn().getY(), mower.getOrientation()));
 
-        for (char instruction : configuration.getInstructions()) {
+        for (char instruction : instructions.getInstructions()) {
             switch (instruction) {
                 case 'G':
                     mower.rotateLeft();
@@ -33,12 +34,12 @@ public class MowerMotionStrategyImpl implements IMowerMotionStrategy {
                 case 'A':
                     mower.goStraight();
                     break;
-                    default:
-                         Logger.getLogger(MowerMotionStrategyImpl.class.getName()).log(Level.WARNING, "Unknown instruction: {0}", instruction);
+                default:
+                    LOGGER.log(Level.WARNING, "Unknown instruction: {0}", instruction);
             }
         }
 
-        System.out.println(MessageFormat.format("Mower stopped moving at ({0}, {1}) in direction of {2}.",
+       LOGGER.info(MessageFormat.format("Mower stopped moving at ({0}, {1}) in direction of {2}.",
                 mower.getLawn().getX(), mower.getLawn().getY(), mower.getOrientation()));
     }
 }

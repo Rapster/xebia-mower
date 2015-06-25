@@ -6,7 +6,6 @@
 package com.xebia.mower;
 
 import com.xebia.mower.domain.Orientation;
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
 import java.io.Reader;
 import java.util.Scanner;
 
@@ -27,14 +26,14 @@ public class XebiaConfigurationParser {
     public XebiaSimulatorConfiguration parse() throws IllegalArgumentException {
         Scanner scanner = new Scanner(reader);
         XebiaSimulatorConfiguration conf = new XebiaSimulatorConfiguration();
-        XebiaMowerConfiguration lastMowerConf = null;
+        XebiaMowerInstruction lastMowerConf = null;
 
         while (scanner.hasNextLine()) {
             if (isRightTopCornerDefinition()) {
                 conf.setXTopRightCorner(scanner.nextInt());
                 conf.setYTopRightCorner(scanner.nextInt());
             } else if (isMowerPosition()) {
-                lastMowerConf = new XebiaMowerConfiguration();
+                lastMowerConf = new XebiaMowerInstruction();
                 lastMowerConf.setXStartPosition(scanner.nextInt());
                 lastMowerConf.setYStartPosition(scanner.nextInt());
                 lastMowerConf.setOrientation(Orientation.valueOf(scanner.next()));

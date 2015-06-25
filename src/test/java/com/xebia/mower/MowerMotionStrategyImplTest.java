@@ -5,7 +5,7 @@
  */
 package com.xebia.mower;
 
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
+import com.xebia.mower.XebiaMowerInstruction;
 import com.xebia.mower.domain.Field;
 import com.xebia.mower.domain.Lawn;
 import com.xebia.mower.domain.Mower;
@@ -24,11 +24,10 @@ public class MowerMotionStrategyImplTest {
      */
     @Test
     public void testMove() {
-        XebiaMowerConfiguration configuration = new XebiaMowerConfiguration(3, 3, Orientation.N, "GAGAGAGADDADAAA".toCharArray());
-        Field field = new Field(configuration.getXStartPosition(), configuration.getYStartPosition());
+        XebiaMowerInstruction instruction = new XebiaMowerInstruction(3, 3, Orientation.N, "GAGAGAGADDADAAA".toCharArray());
+        Field field = new Field(instruction.getXStartPosition(), instruction.getYStartPosition());
         Mower mower = new Mower(new Lawn(field, 2, 3), Orientation.N);
-        MowerMotionStrategyImpl instance = new MowerMotionStrategyImpl();
-        instance.move(configuration, mower);
+        mower.move(instruction);
         
         assertEquals(0, mower.getLawn().getX());
         assertEquals(2, mower.getLawn().getY());

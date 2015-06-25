@@ -6,7 +6,7 @@
 package com.xebia.mower;
 
 import com.xebia.mower.domain.Orientation;
-import com.xebia.mower.XebiaSimulatorConfiguration.XebiaMowerConfiguration;
+import com.xebia.mower.XebiaMowerInstruction;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.NoSuchElementException;
@@ -37,14 +37,14 @@ public class XebiaConfigurationParserTest {
         assertEquals(5, conf.getYTopRightCorner());
         assertEquals(2, conf.getMowerConfigurations().size());
 
-        XebiaMowerConfiguration mower1 = conf.getMowerConfigurations().get(0);
+        XebiaMowerInstruction mower1 = conf.getMowerConfigurations().get(0);
         assertEquals(1, mower1.getXStartPosition());
         assertEquals(2, mower1.getYStartPosition());
 
         assertEquals(Orientation.N, mower1.getOrientation());
         assertEquals("GAGAGAGAA", String.valueOf(mower1.getInstructions()));
 
-        XebiaMowerConfiguration mower2 = conf.getMowerConfigurations().get(1);
+        XebiaMowerInstruction mower2 = conf.getMowerConfigurations().get(1);
         assertEquals(3, mower2.getXStartPosition());
         assertEquals(3, mower2.getYStartPosition());
         assertEquals(Orientation.E, mower2.getOrientation());
