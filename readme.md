@@ -1,4 +1,4 @@
-# Test Technique Xebia
+# Cahier des charges
 
 La société MowItNow a décidé de développer une tondeuse à gazon automatique, destinée aux surfaces rectangulaires. 
 
