@@ -21,7 +21,7 @@ public class Field {
     private final int height;
 
     public Field(int xRightTopCorner, int yRightTopCorner) {
-        // Interval [0;
+        // Interval x=[0;xRightTopCorner]; y=[0;yRightTopCorner]
         this.width = xRightTopCorner + 1;
         this.height = yRightTopCorner + 1;
         int capacity = width * height;
